@@ -1,10 +1,9 @@
 <!-- codacy-status -->
-https://app.codacy.com/gh/VinzOo93/P8ToDoList/dashboard
 <!-- /codacy-status -->
 
 installation se rendre dans le dossier à l'intérieur du repertoire de votre server local :
 
- lancer la commande : git clone https://github.com/VinzOo93/P8ToDoList.git
+ lancer la commande : git clone https://github.com/Alex-dos/OC_P8_ToDo_Co
 
 pour installer les dépendances de symfony se rendre dans : cd P8ToDoList composer install
 
