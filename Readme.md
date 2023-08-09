@@ -23,6 +23,12 @@ php bin/console doctrine:fixtures:load
 
 Import de la base données
 
+php bin/console doctrine:database:create  --env=test
+
+php bin/console doctrine:schema:update --force --env=test
+
+php bin/console doctrine:fixtures:load -n --env=test
+
 Utilisation du lien acceder à l'index :
 
 http://votreHost/
