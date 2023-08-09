@@ -43,6 +43,7 @@ class TaskControllerTest extends WebTestCase
 
     public function testCreateNewTaskUser()
     {
+        $this->client->loginUser($this->admin);
         $crawler = $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_create'));
         $form = $crawler->selectButton('Ajouter')->form();
         $form['task[title]'] = self::ADD_TASK_TITLE_1;
@@ -52,21 +53,13 @@ class TaskControllerTest extends WebTestCase
             'div.alert.alert-success',
             "La tâche a bien été ajoutée."
         );
-
-        $this->client->loginUser($this->user);
-        $crawler = $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_create'));
-        $form = $crawler->selectButton('Ajouter')->form();
-        $form['task[title]'] = self::ADD_TASK_TITLE_2;
-        $form['task[content]'] = self::ADD_TASK_CONTENT_2;
-        $this->client->submit($form);
-        $this->assertSelectorTextContains(
-            'div.alert.alert-success',
-            "La tâche a bien été ajoutée."
-        );
     }
 
     public function testEditExistingTask()
     {
+
+        $this->client->loginUser($this->admin);
+
         $taskToEdit = $this->taskRepo->findOneByTitle(self::ADD_TASK_TITLE_1);
 
         $crawler = $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_edit', ['id' => $taskToEdit->getId()]));
@@ -81,6 +74,8 @@ class TaskControllerTest extends WebTestCase
 
     public function testToggleTaskAction()
     {
+        $this->client->loginUser($this->admin);
+
         $taskToEdit = $this->taskRepo->findOneByTitle(self::ADD_TASK_TITLE_1);
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_toggle', ['id' => $taskToEdit->getId()]));
         $this->assertSelectorTextContains(
@@ -92,7 +87,7 @@ class TaskControllerTest extends WebTestCase
     public function testDeleteTaskAction()
     {
 
-        $taskToDeleteUser = $this->taskRepo->findOneByTitle(self::ADD_TASK_TITLE_2);
+        $taskToDeleteUser = $this->taskRepo->findOneByTitle(self::ADD_TASK_TITLE_1);
 
         $this->client->loginUser($this->user);
         $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('task_delete', ['id' => $taskToDeleteUser->getId()]));

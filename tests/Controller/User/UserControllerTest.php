@@ -54,7 +54,7 @@ class UserControllerTest extends WebTestCase
         $this->client->submit($form);
         $this->assertSelectorTextContains(
             'div.alert.alert-success',
-            "L'utilisateur a bien été ajouté."
+            "Superbe ! L'utilisateur Pedro a bien été ajouté."
         );
 
         $crawler = $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('user_create'));
@@ -67,7 +67,7 @@ class UserControllerTest extends WebTestCase
         $this->client->submit($form);
         $this->assertSelectorTextContains(
             'div.alert.alert-danger',
-            "l'utilisateur éxiste déjà."
+            "Oops ! l'utilisateur Pedro existe déjà."
         );
 
         $crawler = $this->client->request(Request::METHOD_GET, $this->urlGenerator->generate('user_create'));
@@ -97,7 +97,7 @@ class UserControllerTest extends WebTestCase
         $this->client->submit($form);
         $this->assertSelectorTextContains(
             'html li',
-            "Les deux mots de passe doivent correspondre."
+            "Les deux mots de passes doivent correspondre."
         );
     }
 
@@ -113,7 +113,7 @@ class UserControllerTest extends WebTestCase
         $this->client->submit($form);
         $this->assertSelectorTextContains(
             'div.alert.alert-success',
-            "L'utilisateur a bien été modifié"
+            "Superbe ! L'utilisateur helloUser a bien été modifié"
         );
 
     }

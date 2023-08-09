@@ -73,7 +73,7 @@ class UserController extends AbstractController
             $password = $userPasswordHasher->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
             $entityManager->flush();
-            $this->addFlash('success', "L'utilisateur". $user->getUsername() . " a bien été modifié");
+            $this->addFlash('success', "L'utilisateur ". $user->getUsername() . " a bien été modifié");
             return $this->redirectToRoute('user_list');
         }
 
