@@ -23,6 +23,8 @@ php bin/console doctrine:fixtures:load
 
 Import de la base données
 
+Création de la BDD test :
+
 php bin/console doctrine:database:create  --env=test
 
 php bin/console doctrine:schema:update --force --env=test
@@ -36,5 +38,9 @@ http://votreHost/
 Vous pouvez acceder aux détails de chaque tâche en cliquant sur le nom dans la card.
 
 Vous pouvez inscrire et vous logger ainsi que gerer les tâches
+
+Pour lancer les test :
+
+XDEBUG_MODE=coverage ./vendor/bin/phpunit --coverage-html html
 
 Bonne visite
